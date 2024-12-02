@@ -2,6 +2,9 @@ from flask import Flask, request, render_template, send_file
 from fpdf import FPDF
 import os
 
+
+
+
 app = Flask(__name__)
 
 class FacturaPDF(FPDF):
@@ -60,6 +63,13 @@ def generar_factura(nombre_cliente, valor_servicio):
 
 
 # Rutas
+
+if __name__ == "__main__":
+    # Obtener el puerto asignado por Render
+    port = int(os.environ.get("PORT", 5000))
+    # Escuchar en todas las interfaces de red
+    app.run(host="0.0.0.0", port=port)
+
 
 @app.route('/')
 def index():
